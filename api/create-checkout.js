@@ -1,12 +1,22 @@
 const Stripe = require('stripe');
 
-module.exports = async function handler(req, res) {
+module.exports = async (req, res) => {
+  // 🔒 Primero validar método (CRÍTICO)
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // 🔒 Validar env vars
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return res.status(500).json({ error: 'Missing STRIPE_SECRET_KEY' });
+  }
+
+  if (!process.env.DOMAIN) {
+    return res.status(500).json({ error: 'Missing DOMAIN env' });
+  }
+
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-    if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Method not allowed' });
-    }
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -16,7 +26,7 @@ module.exports = async function handler(req, res) {
           price_data: {
             currency: 'mxn',
             product_data: {
-              name: 'Andrew Caravel Test'
+              name: 'Andrew Caravel Test Product'
             },
             unit_amount: 1000
           },
