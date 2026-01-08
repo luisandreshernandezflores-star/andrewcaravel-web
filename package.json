@@ -1,5 +1,4 @@
 {
-  "name": "andrewcaravel-web",
   "type": "module",
   "dependencies": {
     "stripe": "^14.0.0"
