@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         }
       ],
       success_url: 'https://andrewcaravel-web.vercel.app/success.html',
-      cancel_url: 'https://andrewcaravel-web.vercel.app/cancel.html'
+      cancel_url: req.headers.origin
     });
 
     res.status(200).json({ url: session.url });
