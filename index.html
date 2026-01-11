@@ -519,7 +519,7 @@
         <a onclick="showSection('women')"  data-i18n="nav_women">Mujer</a>
         <a onclick="showSection('men')"    data-i18n="nav_men">Hombre</a>
         <a onclick="showSection('about')"  data-i18n="nav_brand">Marca</a>
-        <a onclick="showSection('mission')" data-i18n="nav_mission">Misión & Visión</a>
+        <a onclick="showSection('mission')" data-i18n="nav_mission">Manifiesto</a>
         <a onclick="showSection('faq')"    data-i18n="nav_faq">FAQ</a>
         <button id="lang-toggle" class="lang-toggle">EN</button>
       </div>
@@ -852,19 +852,32 @@
     </section>
 
     <section id="mission" class="section">
-      <div class="section-heading">
-        <h2 data-i18n="mission_title">Misión & Visión</h2>
-      </div>
-      <div class="grid">
-        <div>
-            <span class="meta-line" data-i18n="mission_label">Misión</span>
-            <p data-i18n="mission_text" style="font-family:var(--font-serif); font-size:1.5rem; margin-top:10px;">Crear piezas de lujo contemporáneo que transmitan poder silencioso.</p>
-        </div>
-        <div>
-            <span class="meta-line" data-i18n="vision_label">Visión</span>
-            <p data-i18n="vision_text" style="font-family:var(--font-serif); font-size:1.5rem; margin-top:10px;">Convertir a Andrew Caravel en una referencia de autoridad estética global.</p>
-        </div>
-      </div>
+    <div class="manifesto-container" style="border: 1px solid #333; padding: 60px; max-width: 800px; margin: 0 auto; position: relative; text-align: center;">
+    <div style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: #d4af37;"></div>
+    
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 30px; font-style: italic; color: #fff;">
+        Menos ruido. Más presencia.
+    </h2>
+      
+    <div style="color: #888; font-size: 1rem; line-height: 1.8;">
+        <p style="margin-bottom: 20px;">
+          En una era definida por el exceso y la rapidez, elegimos la pausa. 
+          Andrew Caravel no sigue tendencias efímeras ni calendarios de moda.
+        </p>
+        <p style="margin-bottom: 20px;">
+          Creemos en el <strong>Lujo Silencioso</strong>: la idea de que la verdadera distinción 
+          no necesita gritar para ser notada. Diseñamos uniformes modernos para quienes 
+          entienden que la elegancia es, ante todo, un acto de eliminación.
+        </p>
+        <p>
+          No fabricamos ropa para llenar armarios, sino para construir carácter.
+        </p>
+    </div>
+
+    <div style="margin-top: 40px; font-family: 'Cormorant Garamond', serif; color: #d4af37; letter-spacing: 2px; text-transform: uppercase;">
+        ANDREW CARAVEL
+    </div>
+</div>
     </section>
 
     <section id="faq" class="section">
@@ -1270,6 +1283,7 @@ async function checkout(e) {
 </body>
  
 </html>
+
 
 
 
