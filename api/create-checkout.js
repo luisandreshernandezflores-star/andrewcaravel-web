@@ -57,6 +57,8 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items: line_items,
       mode: 'payment',
+      phone_number_collection: {enabled: true,},
+      shipping_address_collection: {allowed_countries: ['MX'],},
       success_url: `${req.headers.origin}/?checkout=success`,
       cancel_url: `${req.headers.origin}/`,
     });
