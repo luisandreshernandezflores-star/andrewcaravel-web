@@ -868,32 +868,34 @@
       btn.classList.add('active');
     }
 
-    function addToCartWithVariants(btnElement) {
+        function addToCartWithVariants(btnElement) {
       const card = btnElement.closest('.card');
       
+      // Obtenemos los datos del botón
       const baseName = btnElement.getAttribute('data-name');
       const price = parseInt(btnElement.getAttribute('data-price'));
-      const baseId = btnElement.getAttribute('data-base-id');
-      const stripeId = btnElement.getAttribute('data-stripe');
+      const baseId = btnElement.getAttribute('data-base-id'); 
+      // NOTA: Ya no necesitamos 'data-stripe', el servidor se encarga.
 
-      // Detectar botones activos
+      // Detectar botones activos (Talla y Color)
       const activeBtns = card.querySelectorAll('.variant-btn.active');
       const size = activeBtns[0] ? activeBtns[0].innerText : 'S';
       const color = activeBtns[1] ? activeBtns[1].innerText : 'Negro';
 
-      // Crear ID único para evitar mezclas
+      // Crear ID único para el carrito visual (ej: AC-W-COAT-M-Negro)
       const uniqueId = `${baseId}-${size}-${color}`;
       
-      // Pasar el nombre base y las variantes por separado
+      // Enviamos al carrito
       addToCart({
-        name: baseName, // Solo el nombre
-        variant: `SIZE: ${size} / COLOR: ${color}`, // Texto variante
-        price: price,
-        id: uniqueId, 
-        stripePriceId: stripeId
+        name: baseName, 
+        variant: `SIZE: ${size} / COLOR: ${color}`,
+        price: price,       // Precio visual (para que el usuario lo vea en el carrito)
+        id: uniqueId,       // ID visual (para diferenciar tallas en el carrito)
+        baseId: baseId      // <--- LA CLAVE: El ID que usará el servidor para cobrar lo correcto
       });
     }
-    /* --- FIN LÓGICA VARIANTES --- */
+
+    /* --- FIN LÓGICA VARiIANTES --- */
 
     function renderCart() {
       cartItemsEl.innerHTML = '';
