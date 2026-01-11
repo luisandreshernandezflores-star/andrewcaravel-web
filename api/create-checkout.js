@@ -2,9 +2,9 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 🛡️ LISTA MAESTRA DE PRECIOS (Tu caja fuerte)
-// Aquí defines cuánto cuesta realmente cada cosa.
-// Si un hacker cambia el precio en el HTML, el servidor leerá ESTA lista e ignorará al hacker.
+// 🛡️ LISTA MAESTRA DE PRECIOS
+// PRECIOS REALES
+// CON ESTO EVITO CAMBIOS EN LOS PRECIOS EN EL HTML PROVOCADOS POR UN HACKER
 const INVENTORY = {
   // MUJER
   'AC-W-TEE':     { price: 2200, name: 'Essential Silent Tee' },
@@ -30,23 +30,23 @@ export default async function handler(req, res) {
 
     // Validamos y construimos los items en el servidor
     const line_items = cart.map((item) => {
-      // 1. Buscamos el producto real en nuestra lista segura usando el ID base
+      // 1. Busca el producto real en nuestra lista segura usando el ID base
       const originalProduct = INVENTORY[item.baseId];
 
-      // Si el hacker mandó un ID que no existe, lanzamos error
+      // AQUI LANZA UN ERROR EN CASO DE CAMBIO DE PRECIOS POR HACKER
       if (!originalProduct) {
         throw new Error(`Producto no válido: ${item.name}`);
       }
 
-      // 2. Construimos el cobro usando EL PRECIO DE LA LISTA MAESTRA (No el del frontend)
+      // 2.EL PRECIO DE LA LISTA MAESTRA (No el del frontend)
       return {
         price_data: {
           currency: 'mxn',
           product_data: {
-            name: originalProduct.name, // Usamos el nombre oficial
-            description: item.variant,  // La talla/color sí la tomamos del usuario
+            name: originalProduct.name, // NOMBRE OFICIAL
+            description: `(x${item.quantity}) - ${item.variant}`,  //TALLA,COLOR Y CANTIDAD SOLICITADA POR USARIO
           },
-          // Stripe usa centavos: $2200 => 220000
+          //centavos: $2200 => 220000
           unit_amount: originalProduct.price * 100, 
         },
         quantity: item.quantity,
