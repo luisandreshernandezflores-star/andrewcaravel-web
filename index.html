@@ -373,6 +373,99 @@
       .cart { width: 100%; right: -100%; }
       .cart-toggle { bottom: 20px; right: 20px; padding: 10px 18px; }
     }
+    /* =========================================
+       DISEÑO MÓVIL 
+       ========================================= */
+
+    /* Ajustes para Tablets y Celulares grandes */
+    @media (max-width: 1024px) {
+      h1 { font-size: 3rem; } /* Título un poco más chico */
+      .card img { height: 350px; } /* Imágenes un poco más bajas */
+    }
+
+    /* Ajustes para Celulares (iPhone, Android) */
+    @media (max-width: 768px) {
+      
+      /* 1. MENÚ DE NAVEGACIÓN */
+      nav {
+        flex-direction: column; /* Pone el logo arriba y los links abajo */
+        align-items: flex-start;
+        padding: 20px;
+        gap: 20px;
+      }
+      
+      nav div {
+        display: flex;
+        flex-wrap: wrap; /* Si no caben los links, bajan a la siguiente línea */
+        gap: 15px;
+        width: 100%;
+      }
+
+      nav a {
+        font-size: 10px; /* Letra un poco más pequeña para que quepan */
+        padding: 5px 0;
+      }
+
+      /* 2. HERO (SECCIÓN PRINCIPAL) */
+      .hero-wrapper {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 40px;
+        padding-bottom: 40px;
+      }
+
+      .hero-meta {
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+        padding-left: 0;
+        padding-top: 30px;
+      }
+
+      h1 { font-size: 2.2rem; } /* Título ajustado a pantalla chica */
+      .hero-text { font-size: 1.4rem; }
+
+      /* 3. GRID DE PRODUCTOS */
+      section { padding: 60px 20px; } /* Menos relleno a los lados */
+      
+      .grid {
+        grid-template-columns: 1fr; /* Una tarjeta por fila en celular */
+        gap: 60px; /* Más espacio entre productos para scroll cómodo */
+      }
+
+      .card img {
+        height: 400px; /* Imagen alta para que luzca en pantalla completa */
+      }
+
+      /* 4. CARRITO FULL SCREEN */
+      .cart {
+        width: 100%;      /* Ocupa toda la pantalla */
+        right: -100%;     /* Se esconde totalmente a la derecha */
+        padding: 25px;    /* Un poco menos de padding interno */
+      }
+      
+      .cart.open {
+        right: 0;
+      }
+
+      .cart-toggle {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px; /* Botón más fácil de tocar con el dedo */
+      }
+
+      /* 5. FOOTER */
+      footer {
+        grid-template-columns: 1fr; /* Una columna */
+        gap: 40px;
+        text-align: center;
+      }
+      
+      .footer-col {
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 30px;
+      }
+      
+      .footer-col:last-child { border-bottom: none; }
+    }
   </style>
 
 </head>
@@ -1166,4 +1259,5 @@ async function checkout(e) {
 </body>
  
 </html>
+
 
