@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1283,3 +1284,1319 @@ async function checkout(e) {
 </body>
  
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Andrew Caravel | Silent Luxury</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<link rel="icon" type="image/jpeg" href="/img/AC.png">
+  <title>Andrew Caravel | Silent Luxury & Minimalist Fashion</title>
+  <meta name="description" content="Andrew Caravel define la nueva autoridad estética. Ropa de lujo silencioso, minimalista y atemporal. Envíos exclusivos en México.">
+  <meta name="author" content="Andrew Caravel">
+
+  <meta property="og:title" content="Andrew Caravel | Silent Luxury">
+  <meta property="og:description" content="La elegancia no es exceso. Es control. Descubre la colección.">
+  <meta property="og:image" content="https://andrewcaravel-web.vercel.app/img/ACN.jpeg">
+  <meta property="og:url" content="https://andrewcaravel-web.vercel.app/">
+  <meta property="og:type" content="website">
+  
+  <!-- FUENTES PREMIUM -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* COLORES REFINADOS */
+      --color-bg: #050505;
+      --color-bg-alt: #0a0a0a;
+      --color-card: #0F0F0F;
+      
+      /* Tono Hueso más pálido y elegante */
+      --color-bone: #EAE8E0;       
+      --color-bone-soft: #B8B5AD;
+      --color-muted: #7A7870;
+      
+      --color-accent: #D5C7A1;
+      
+      --border-subtle: rgba(234, 232, 224, 0.15);
+      --border-strong: rgba(234, 232, 224, 0.3);
+
+      /* FUENTES */
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 70%);
+      color: var(--color-bone);
+      font-family: var(--font-sans);
+      scrollbar-width: thin;
+      scrollbar-color: #333 #050505;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::-webkit-scrollbar { width: 5px; }
+    body::-webkit-scrollbar-track { background: #050505; }
+    body::-webkit-scrollbar-thumb { background: #444; border-radius: 999px; }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(5,5,5,0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+    }
+
+    nav strong {
+      font-family: var(--font-serif);
+      letter-spacing: 0.1em;
+      font-size: 20px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--color-bone);
+      cursor: pointer;
+    }
+
+    nav div {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--color-bone-soft);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--color-bone); }
+    nav a::after {
+      content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 1px;
+      background: var(--color-bone); transition: width 0.3s ease;
+    }
+    nav a:hover::after { width: 100%; }
+
+    /* ESTILO BOTÓN IDIOMA */
+    .lang-toggle {
+      padding: 6px 14px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--color-bone);
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .lang-toggle:hover { 
+        background: var(--color-bone); 
+        color: #050505;
+        border-color: var(--color-bone);
+    }
+
+    /* SECCIONES */
+    main { padding-top: 100px; min-height: 80vh; }
+
+    section {
+      max-width: 1400px;
+      margin: auto;
+      padding: 100px 40px;
+      display: none;
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      color: var(--color-bone);
+    }
+    h1 { font-size: 3.5rem; line-height: 1.1; }
+    h2 {
+      font-size: 2rem;
+      display: flex; align-items: center; gap: 20px; width: 100%;
+      border-bottom: 1px solid var(--border-subtle); padding-bottom: 20px;
+    }
+    h2::before { display: none; }
+    .section-heading { margin-bottom: 60px; }
+
+    /* HERO */
+    .hero-wrapper {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: flex-end;
+      padding-bottom: 80px; border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-subtitle {
+      font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--color-accent); margin-bottom: 20px; display: block;
+    }
+    .hero-text {
+      margin-top: 20px; font-family: var(--font-serif); font-size: 1.8rem;
+      line-height: 1.4; color: var(--color-bone);
+    }
+    .hero-meta {
+      border-left: 1px solid var(--border-subtle); padding-left: 30px;
+      color: var(--color-bone-soft); font-size: 14px; line-height: 1.8;
+    }
+    .hero-meta-label {
+      text-transform: uppercase; letter-spacing: 0.2em; font-size: 10px;
+      color: var(--color-muted); margin-bottom: 10px; display: block;
+    }
+    .home-block { max-width: 700px; margin: 80px auto; text-align: center; }
+    .home-block h2 { border: none; justify-content: center; font-size: 2.2rem; }
+    .home-block p, .home-closing p {
+      font-size: 16px; line-height: 2; color: var(--color-bone-soft); font-weight: 300;
+    }
+    .home-closing {
+      border-top: 1px solid var(--border-subtle); padding-top: 60px; margin-top: 60px;
+      text-align: center; font-family: var(--font-serif); font-size: 1.5rem;
+    }
+
+    /* GRID & CARDS */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
+    .card {
+      background: transparent; padding: 0; border-radius: 0; border: none;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column;
+    }
+    .card::before { display: none; }
+    .card:hover { transform: translateY(-10px); box-shadow: none; }
+    .card img {
+      width: 100%; height: 420px; object-fit: cover; margin-bottom: 25px;
+      border-radius: 2px; opacity: 0.85; transition: all 0.6s ease; filter: grayscale(30%);
+    }
+    .card:hover img { transform: scale(1.02); opacity: 1; filter: grayscale(0%); }
+    .card h3 {
+      font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 5px;
+      letter-spacing: 0.05em; color: var(--color-bone);
+    }
+    .card h3::after { display: none; }
+    .meta-line { font-size: 10px; color: var(--color-muted); margin-bottom: 10px; letter-spacing: 0.2em; }
+    .quote {
+      font-size: 13px; color: var(--color-bone-soft); margin-bottom: 15px;
+      line-height: 1.6; opacity: 0.7; min-height: 40px;
+    }
+    .price {
+      font-family: var(--font-sans); font-weight: 500; margin-bottom: 15px;
+      font-size: 13px; letter-spacing: 0.1em; color: var(--color-bone);
+      border-top: 1px solid var(--border-subtle); padding-top: 15px;
+    }
+
+    /* === ESTILOS PARA VARIANTES (TALLA Y COLOR) === */
+    .variants-container {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 12px;
+    }
+    .variant-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .variant-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-muted);
+      width: 45px;
+    }
+    .variant-options {
+      display: flex;
+      gap: 8px;
+    }
+    .variant-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--color-bone-soft);
+      font-family: var(--font-sans);
+      font-size: 10px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .variant-btn:hover {
+      border-color: var(--color-bone);
+      color: var(--color-bone);
+    }
+    .variant-btn.active {
+      background: var(--color-bone);
+      color: #050505;
+      border-color: var(--color-bone);
+    }
+
+    .buy-btn {
+      width: 100%; padding: 14px; border-radius: 0; border: 1px solid var(--border-strong);
+      font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.2em; transition: all 0.4s ease;
+      background: transparent; color: var(--color-bone); text-transform: uppercase; cursor: pointer;
+    }
+    .buy-btn:hover:not(.sold-out) {
+      background: var(--color-bone); border-color: var(--color-bone); color: #050505;
+    }
+    .btn { padding: 14px 30px; border-radius: 0; border: 1px solid var(--border-strong); background: transparent; color: var(--color-bone); text-transform: uppercase; letter-spacing: 0.2em; }
+    .btn:hover { background: var(--color-bone); color: #050505; }
+
+    /* CARRITO */
+    .cart-toggle {
+      position: fixed; bottom: 40px; right: 40px;
+      background: var(--color-bone); border: 1px solid var(--color-bone);
+      color: #050505; padding: 12px 24px;
+      letter-spacing: 0.2em; font-size: 10px; font-weight: 600;
+      text-transform: uppercase; cursor: pointer; z-index: 900;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.3s ease; border-radius: 0;
+    }
+    .cart-toggle:hover {
+      background: #fff; transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+    .cart {
+      position: fixed; top: 0; right: -500px; width: 450px; height: 100%;
+      background: rgba(8, 8, 8, 0.98); border-left: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px); color: var(--color-bone); padding: 40px;
+      transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1); z-index: 2000;
+      display: flex; flex-direction: column; box-shadow: -20px 0 50px rgba(0,0,0,0.8);
+    }
+    .cart.open { right: 0; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-strong); padding-bottom: 25px; margin-bottom: 20px; }
+    .cart-header h3 { font-family: var(--font-serif); font-size: 1.8rem; letter-spacing: 0.05em; margin-bottom: 0; }
+    .close-cart-btn { background: transparent; border: 1px solid var(--border-subtle); color: var(--color-bone); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+    .close-cart-btn:hover { border-color: var(--color-bone); transform: rotate(90deg); }
+    .close-line { position: absolute; width: 14px; height: 1px; background: var(--color-bone); }
+    .close-line-1 { transform: rotate(45deg); }
+    .close-line-2 { transform: rotate(-45deg); }
+    .cart-items { flex: 1; overflow-y: auto; margin-top: 10px; padding-right: 10px; }
+    .cart-items::-webkit-scrollbar { width: 3px; }
+    .cart-items::-webkit-scrollbar-thumb { background: #333; }
+    .cart-item { margin-bottom: 25px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 15px; }
+    .cart-item-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    
+    /* MODIFICACIÓN: Estilo del nombre y variantes en carrito */
+    .cart-item-info strong { 
+      font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; 
+      letter-spacing: 0.02em; display: block; margin-bottom: 2px; /* Reducido para acercar la variante */
+    }
+    .cart-variant-line {
+      display: block; 
+      font-family: var(--font-sans);
+      font-size: 9px; 
+      color: var(--color-muted); /* Color tenue */
+      text-transform: uppercase; 
+      letter-spacing: 0.2em; /* Mucho espaciado */
+      margin-bottom: 5px;
+    }
+    .cart-item-info .price-tag {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--color-bone-soft);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .cart-item-controls { display: flex; align-items: center; gap: 12px; border: 1px solid var(--border-subtle); padding: 4px 10px; }
+    .qty-btn { background: transparent; border: none; color: var(--color-bone); font-size: 14px; cursor: pointer; padding: 0; }
+    .qty-btn:hover { color: #fff; }
+    .cart-item-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--color-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .remove-item { background: transparent; border: none; color: #888; cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; border-bottom: 1px solid transparent; transition: all 0.3s; }
+    .remove-item:hover { color: #ff9999; border-bottom-color: #ff9999; }
+    .cart-footer { margin-top: auto; border-top: 1px solid var(--border-strong); padding-top: 25px; }
+    .cart-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; font-family: var(--font-serif); font-size: 1.4rem; }
+    .checkout-btn { display: block; width: 100%; text-align: center; padding: 16px; background: var(--color-bone); color: #050505; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; }
+    .checkout-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); }
+
+    /* FOOTER */
+    footer { background: #020202; padding: 80px 40px; margin-top: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
+    .footer-col h4 { color: var(--color-bone); font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-col a, .footer-col p { display: block; color: var(--color-muted); text-decoration: none; font-size: 12px; margin-bottom: 10px; letter-spacing: 0.05em; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--color-bone); }
+    .footer-bottom { grid-column: 1 / -1; text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-subtle); font-size: 10px; letter-spacing: 0.2em; color: var(--color-muted); text-transform: uppercase; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .hero-meta { border-left: none; border-top: 1px solid var(--border-subtle); padding-left: 0; padding-top: 30px; }
+      h1 { font-size: 2.8rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      nav div { justify-content: flex-start; width: 100%; }
+      section { padding: 60px 20px; }
+      .grid { gap: 20px; }
+      .cart { width: 100%; right: -100%; }
+      .cart-toggle { bottom: 20px; right: 20px; padding: 10px 18px; }
+    }
+    /* =========================================
+       DISEÑO MÓVIL 
+       ========================================= */
+
+    /* Ajustes para Tablets y Celulares grandes */
+    @media (max-width: 1024px) {
+      h1 { font-size: 3rem; } /* Título un poco más chico */
+      .card img { height: 350px; } /* Imágenes un poco más bajas */
+    }
+
+    /* Ajustes para Celulares (iPhone, Android) */
+    @media (max-width: 768px) {
+      
+      /* 1. MENÚ DE NAVEGACIÓN */
+      nav {
+        flex-direction: column; /* Pone el logo arriba y los links abajo */
+        align-items: flex-start;
+        padding: 20px;
+        gap: 20px;
+      }
+      
+      nav div {
+        display: flex;
+        flex-wrap: wrap; /* Si no caben los links, bajan a la siguiente línea */
+        gap: 15px;
+        width: 100%;
+      }
+
+      nav a {
+        font-size: 10px; /* Letra un poco más pequeña para que quepan */
+        padding: 5px 0;
+      }
+
+      /* 2. HERO (SECCIÓN PRINCIPAL) */
+      .hero-wrapper {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 40px;
+        padding-bottom: 40px;
+      }
+
+      .hero-meta {
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+        padding-left: 0;
+        padding-top: 30px;
+      }
+
+      h1 { font-size: 2.2rem; } /* Título ajustado a pantalla chica */
+      .hero-text { font-size: 1.4rem; }
+
+      /* 3. GRID DE PRODUCTOS */
+      section { padding: 60px 20px; } /* Menos relleno a los lados */
+      
+      .grid {
+        grid-template-columns: 1fr; /* Una tarjeta por fila en celular */
+        gap: 60px; /* Más espacio entre productos para scroll cómodo */
+      }
+
+      .card img {
+        height: 400px; /* Imagen alta para que luzca en pantalla completa */
+      }
+
+      /* 4. CARRITO FULL SCREEN */
+      .cart {
+        width: 100%;      /* Ocupa toda la pantalla */
+        right: -100%;     /* Se esconde totalmente a la derecha */
+        padding: 25px;    /* Un poco menos de padding interno */
+      }
+      
+      .cart.open {
+        right: 0;
+      }
+
+      .cart-toggle {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px; /* Botón más fácil de tocar con el dedo */
+      }
+
+      /* 5. FOOTER */
+      footer {
+        grid-template-columns: 1fr; /* Una columna */
+        gap: 40px;
+        text-align: center;
+      }
+      
+      .footer-col {
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 30px;
+      }
+      
+      .footer-col:last-child { border-bottom: none; }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- BOTÓN CARRITO -->
+  <button id="cart-toggle" class="cart-toggle">
+    CART (<span id="cart-count">0</span>)
+  </button>
+
+  <!-- DRAWER CARRITO -->
+  <div id="cart" class="cart">
+    <div class="cart-header">
+      <h3>Your Selection</h3>
+      <button id="close-cart" class="close-cart-btn" aria-label="Cerrar carrito">
+        <span class="close-line close-line-1"></span>
+        <span class="close-line close-line-2"></span>
+      </button>
+    </div>
+
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span>$<span id="cart-total">0</span></span>
+      </div>
+
+      <a id="checkout-btn" href="#" class="checkout-btn">
+        Proceed to Checkout
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <nav>
+      <strong onclick="showSection('home')">ANDREW CARAVEL</strong>
+      <div>
+        <a onclick="showSection('home')"   data-i18n="nav_home">Inicio</a>
+        <a onclick="showSection('women')"  data-i18n="nav_women">Mujer</a>
+        <a onclick="showSection('men')"    data-i18n="nav_men">Hombre</a>
+        <a onclick="showSection('about')"  data-i18n="nav_brand">Marca</a>
+        <a onclick="showSection('mission')" data-i18n="nav_mission">Manifiesto</a>
+        <a onclick="showSection('faq')"    data-i18n="nav_faq">FAQ</a>
+        <button id="lang-toggle" class="lang-toggle">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="home" class="section home">
+      <div class="hero-wrapper">
+        <div class="hero">
+          <span class="hero-subtitle" data-i18n="hero_subtitle">Silent Authority</span>
+          <h1>ANDREW CARAVEL</h1>
+          <p class="hero-text" data-i18n-html="hero_text">
+            <span>No seguimos temporadas.</span><br>
+            <span>Construimos presencia.</span>
+          </p>
+        </div>
+
+        <div class="hero-meta">
+          <span class="hero-meta-label" data-i18n="hero_meta_label">Concepto</span>
+          <p data-i18n="hero_meta_text">
+            Un sistema reducido de piezas esenciales en negro y hueso.
+            Diseñado para construir presencia silenciosa, día tras día.
+          </p>
+        </div>
+      </div>
+
+      <div class="home-block">
+        <h2 data-i18n="home_block1_title">El lujo no se anuncia. Se reconoce.</h2>
+        <p data-i18n="home_block1_text">
+          Andrew Caravel nace de la convicción de que el verdadero poder no necesita ruido.
+          Cada prenda es una declaración silenciosa.
+        </p>
+      </div>
+      
+      <div class="home-closing">
+        <p data-i18n-html="home_closing_text">"La elegancia no es exceso. Es control."</p>
+      </div>
+    </section>
+
+    <!-- MUJER -->
+    <section id="women" class="section">
+      <div class="section-heading">
+        <h2 data-i18n="women_title">Colección Mujer</h2>
+      </div>
+      <div class="grid">
+        <!-- Producto 1 -->
+        <div class="card" data-id="tee-women" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=600&q=80" alt="Essential Tee">
+          <div class="meta-line">Essential / Cotton</div>
+          <h3>Essential Silent Tee</h3>
+          <p class="quote">La base silenciosa del poder moderno. Algodón premium.</p>
+          
+          <!-- VARIANTES -->
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+          
+          <p class="price">$2,200 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Essential Silent Tee - Mujer" data-price="2200" data-base-id="AC-W-TEE" data-stripe="price_1Sm6bIJiBpJ6fevzE7GfC2iZ">Comprar</button>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="card" data-id="hoodie-women" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Hoodie">
+          <div class="meta-line">Structured / Fleece</div>
+          <h3>Structured Hoodie</h3>
+          <p class="quote">Arquitectura suave. Presencia cotidiana. Sin cordones.</p>
+          
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$4,500 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Hoodie - Mujer" data-price="4500" data-base-id="AC-W-HOODIE" data-stripe="price_1Sm6pCJiBpJ6fevziYVujGpJ">Comprar</button>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="card" data-id="trouser-women" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80" alt="Trouser">
+          <div class="meta-line">Tailored / Technical</div>
+          <h3>Structured Trouser</h3>
+          <p class="quote">Sastrería que lidera. Sarga técnica.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$4,500 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Trouser - Mujer" data-price="4500" data-base-id="AC-W-TROUSER" data-stripe="price_1Sm6wwJiBpJ6fevz3VpXuoC4">Comprar</button>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="card" data-id="coat-women" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=600&q=80" alt="Coat">
+          <div class="meta-line">Outer / Wool</div>
+          <h3>Structured Coat</h3>
+          <p class="quote">El poder entra antes que tú. Lana fría mate.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$7,800 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Coat - Mujer" data-price="7800" data-base-id="AC-W-COAT" data-stripe="price_1Sm6zyJiBpJ6fevz6Zu8qxRN">Comprar</button>
+        </div>
+
+        <!-- Producto 5 -->
+        <div class="card" data-id="dress-women" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=600&q=80" alt="Dress">
+          <div class="meta-line">Edition / Dress</div>
+          <h3>Sovereign Line Dress</h3>
+          <p class="quote">Elegancia que domina sin explicarse.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$6,700 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Sovereign Line Dress" data-price="6700" data-base-id="AC-W-DRESS" data-stripe="price_1Sm72HJiBpJ6fevzpCWWob0j">Comprar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOMBRE -->
+    <section id="men" class="section">
+      <div class="section-heading">
+        <h2 data-i18n="men_title">Colección Hombre</h2>
+      </div>
+      <div class="grid">
+        <!-- Producto H1 -->
+        <div class="card" data-id="tee-men" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Tee Men">
+          <div class="meta-line">Essential / Cotton</div>
+          <h3>Essential Silent Tee</h3>
+          <p class="quote">Autoridad natural. Corte estructurado.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$2,200 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Essential Silent Tee - Hombre" data-price="2200" data-base-id="AC-M-TEE" data-stripe="price_1Sm6bIJiBpJ6fevzE7GfC2iZ">Comprar</button>
+        </div>
+
+        <!-- Producto H2 -->
+        <div class="card" data-id="hoodie-men" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1518049180053-39d37255979f?auto=format&fit=crop&w=600&q=80" alt="Hoodie Men">
+          <div class="meta-line">Structured / Fleece</div>
+          <h3>Structured Hoodie</h3>
+          <p class="quote">Diseñado para liderar. Heavyweight.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$4,500 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Hoodie - Hombre" data-price="4500" data-base-id="AC-M-HOODIE" data-stripe="price_1Sm6pCJiBpJ6fevziYVujGpJ">Comprar</button>
+        </div>
+
+        <!-- Producto H3 -->
+        <div class="card" data-id="trouser-men" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=600&q=80" alt="Trouser Men">
+          <div class="meta-line">Tailored / Technical</div>
+          <h3>Structured Trouser</h3>
+          <p class="quote">Control total.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$4,500 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Trouser - Hombre" data-price="4500" data-base-id="AC-M-TROUSER" data-stripe="price_1Sm6wwJiBpJ6fevz3VpXuoC4">Comprar</button>
+        </div>
+
+        <!-- Producto H4 -->
+        <div class="card" data-id="coat-men" data-stock="150">
+          <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=600&q=80" alt="Coat Men">
+          <div class="meta-line">Outer / Wool</div>
+          <h3>Structured Coat</h3>
+          <p class="quote">Diseño que impone. Lana fría.</p>
+
+          <div class="variants-container">
+            <div class="variant-row">
+              <span class="variant-label">Talla</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">S</button>
+                <button class="variant-btn" onclick="selectVariant(this)">M</button>
+                <button class="variant-btn" onclick="selectVariant(this)">L</button>
+              </div>
+            </div>
+            <div class="variant-row">
+              <span class="variant-label">Color</span>
+              <div class="variant-options">
+                <button class="variant-btn active" onclick="selectVariant(this)">Negro</button>
+                <button class="variant-btn" onclick="selectVariant(this)">Hueso</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="price">$7,800 MXN</p>
+          <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Coat - Hombre" data-price="7800" data-base-id="AC-M-COAT" data-stripe="price_1Sm6zyJiBpJ6fevz6Zu8qxRN">Comprar</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-heading">
+        <h2 data-i18n="about_title">Andrew Caravel</h2>
+      </div>
+      <div style="max-width:800px;">
+          <p data-i18n-html="about_text" style="font-size:1.4rem; font-family:var(--font-serif); line-height:1.6;">
+            Andrew Caravel representa una nueva forma de autoridad: silenciosa, firme y consciente.<br><br>
+            Diseñamos prendas que hablan sin levantar la voz, que imponen sin exagerar y que permanecen más allá del momento.
+          </p>
+      </div>
+    </section>
+
+    <section id="mission" class="section">
+    <div class="manifesto-container" style="border: 1px solid #333; padding: 60px; max-width: 800px; margin: 0 auto; position: relative; text-align: center;">
+    <div style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: #d4af37;"></div>
+    
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 30px; font-style: italic; color: #fff;">
+        Menos ruido. Más presencia.
+    </h2>
+      
+    <div style="color: #888; font-size: 1rem; line-height: 1.8;">
+        <p style="margin-bottom: 20px;">
+          En una era definida por el exceso y la rapidez, elegimos la pausa. 
+          Andrew Caravel no sigue tendencias efímeras ni calendarios de moda.
+        </p>
+        <p style="margin-bottom: 20px;">
+          Creemos en el <strong>Lujo Silencioso</strong>: la idea de que la verdadera distinción 
+          no necesita gritar para ser notada. Diseñamos uniformes modernos para quienes 
+          entienden que la elegancia es, ante todo, un acto de eliminación.
+        </p>
+        <p>
+          No fabricamos ropa para llenar armarios, sino para construir carácter.
+        </p>
+    </div>
+
+    <div style="margin-top: 40px; font-family: 'Cormorant Garamond', serif; color: #d4af37; letter-spacing: 2px; text-transform: uppercase;">
+        ANDREW CARAVEL
+    </div>
+</div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-heading">
+        <h2 data-i18n="faq_title">Preguntas frecuentes</h2>
+      </div>
+      <div style="max-width:800px;">
+          <div style="border-bottom:1px solid var(--border-subtle); padding:20px 0;">
+            <strong data-i18n="faq_q1" style="font-family:var(--font-serif); font-size:1.2rem;">¿Las piezas son limitadas?</strong><br>
+            <span data-i18n="faq_a1" style="display:block; margin-top:10px; color:var(--color-bone-soft);">Sí, máximo 150 unidades por modelo.</span>
+          </div>
+          <div style="border-bottom:1px solid var(--border-subtle); padding:20px 0;">
+            <strong data-i18n="faq_q2" style="font-family:var(--font-serif); font-size:1.2rem;">¿Los accesorios están numerados?</strong><br>
+            <span data-i18n="faq_a2" style="display:block; margin-top:10px; color:var(--color-bone-soft);">No.</span>
+          </div>
+      </div>
+    </section>
+
+    <!-- Sección de éxito -->
+    <section id="success" class="section">
+      <div class="section-heading">
+        <h2 data-i18n="success_title">Pago confirmado</h2>
+      </div>
+      <p class="message" data-i18n-html="success_message">
+        Hemos recibido tu pago correctamente.<br><br>
+        En los próximos minutos recibirás un correo de confirmación con los detalles de tu compra.
+      </p>
+      <br>
+      <button onclick="showSection('home')" class="btn" data-i18n="success_back_btn">
+        Volver a la tienda
+      </button>
+    </section>
+
+  </main>
+
+  <footer>
+      <div class="footer-col">
+          <h4>ANDREW CARAVEL</h4>
+          <p>Silent Luxury.<br>Mexico City.</p>
+      </div>
+      <div class="footer-col">
+          <h4>Cliente</h4>
+          <a href="#" onclick="showSection('faq')">Preguntas Frecuentes</a>
+          <a href="#">Envíos y Devoluciones</a>
+      </div>
+      <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Privacidad</a>
+      </div>
+      <div class="footer-bottom">
+          © 2024 ANDREW CARAVEL. ALL RIGHTS RESERVED.
+      </div>
+  </footer>
+
+  <!-- JS LOGIC -->
+  <script>
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = storedCart.map(item =>
+      item.quantity ? item : { ...item, quantity: 1 }
+    );
+
+    const cartEl        = document.getElementById('cart');
+    const cartItemsEl   = document.getElementById('cart-items');
+    const cartCountEl   = document.getElementById('cart-count');
+    const cartTotalEl   = document.getElementById('cart-total');
+    const checkoutBtnEl = document.getElementById('checkout-btn');
+
+    // Drawer Logic
+    document.getElementById('cart-toggle').addEventListener('click', () => {
+      cartEl.classList.add('open');
+    });
+
+    document.getElementById('close-cart').addEventListener('click', () => {
+      cartEl.classList.remove('open');
+    });
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function addToCart(product) {
+      const existing = cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          ...product,
+          quantity: 1
+        });
+      }
+
+      saveCart();
+      renderCart();
+      cartEl.classList.add('open');
+    }
+
+    /* --- LÓGICA DE VARIANTES Y CARRITO AVANZADO --- */
+    function selectVariant(btn) {
+      // Quitar clase active a los hermanos
+      const siblings = btn.parentElement.querySelectorAll('.variant-btn');
+      siblings.forEach(s => s.classList.remove('active'));
+      // Activar botón clickeado
+      btn.classList.add('active');
+    }
+
+        function addToCartWithVariants(btnElement) {
+      const card = btnElement.closest('.card');
+      
+      // Obtenemos los datos del botón
+      const baseName = btnElement.getAttribute('data-name');
+      const price = parseInt(btnElement.getAttribute('data-price'));
+      const baseId = btnElement.getAttribute('data-base-id'); 
+      // NOTA: Ya no necesitamos 'data-stripe', el servidor se encarga.
+
+      // Detectar botones activos (Talla y Color)
+      const activeBtns = card.querySelectorAll('.variant-btn.active');
+      const size = activeBtns[0] ? activeBtns[0].innerText : 'S';
+      const color = activeBtns[1] ? activeBtns[1].innerText : 'Negro';
+
+      // Crear ID único para el carrito visual (ej: AC-W-COAT-M-Negro)
+      const uniqueId = `${baseId}-${size}-${color}`;
+      
+      // Enviamos al carrito
+      addToCart({
+        name: baseName, 
+        variant: `SIZE: ${size} / COLOR: ${color}`,
+        price: price,       // Precio visual (para que el usuario lo vea en el carrito)
+        id: uniqueId,       // ID visual (para diferenciar tallas en el carrito)
+        baseId: baseId      // <--- LA CLAVE: El ID que usará el servidor para cobrar lo correcto
+      });
+    }
+
+    /* --- FIN LÓGICA VARiIANTES --- */
+
+    function renderCart() {
+      cartItemsEl.innerHTML = '';
+      let total = 0;
+
+      if(cart.length === 0) {
+          cartItemsEl.innerHTML = '<div style="opacity:0.6; font-size:13px; margin-top:20px;">Your cart is empty.</div>';
+      }
+
+      cart.forEach(item => {
+        const lineTotal = item.price * item.quantity;
+        total += lineTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.dataset.id = item.id;
+
+        // Renderizado del item con variante debajo
+        div.innerHTML = `
+          <div class="cart-item-row">
+            <div class="cart-item-info">
+              <strong>${item.name}</strong>
+              <span class="cart-variant-line">${item.variant || ''}</span>
+              <span class="price-tag">$${item.price.toLocaleString()} MXN</span>
+            </div>
+            <div class="cart-item-controls">
+              <button class="qty-btn minus">-</button>
+              <span class="qty">${item.quantity}</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+          <div class="cart-item-footer">
+            <span>Sub: $${lineTotal.toLocaleString()}</span>
+            <button class="remove-item">Remove</button>
+          </div>
+        `;
+
+        cartItemsEl.appendChild(div);
+      });
+
+      cartCountEl.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartTotalEl.textContent = total.toLocaleString();
+    }
+
+    cartItemsEl.addEventListener('click', (e) => {
+      const itemEl = e.target.closest('.cart-item');
+      if (!itemEl) return;
+
+      const id = itemEl.dataset.id;
+      const item = cart.find(p => p.id === id);
+      if (!item) return;
+
+      if (e.target.classList.contains('plus')) {
+        item.quantity += 1;
+      } else if (e.target.classList.contains('minus')) {
+        item.quantity -= 1;
+        if (item.quantity <= 0) {
+          cart = cart.filter(p => p.id !== id);
+        }
+      } else if (e.target.classList.contains('remove-item')) {
+        cart = cart.filter(p => p.id !== id);
+      } else {
+        return;
+      }
+
+      saveCart();
+      renderCart();
+    });
+
+    // Checkout
+        // --- FUNCIÓN CHECKOUT FINAL: Tallas + Dirección + ID de Orden ---
+async function checkout(e) {
+  e.preventDefault();
+  if (!cart.length) return alert("Tu carrito está vacío.");
+
+  const btn = document.getElementById('checkout-btn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Procesando...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cart })
+    });
+
+    const data = await res.json();
+
+    // SI HAY ERROR EN EL SERVIDOR, LO MOSTRAMOS
+    if (!res.ok) {
+      throw new Error(data.error || 'Error desconocido del servidor');
+    }
+
+    if (!data.url) throw new Error('No checkout URL');
+
+    window.location.href = data.url;
+
+  } catch (err) {
+    // AQUÍ ESTÁ LA MAGIA: Veremos el error real
+    alert('DETALLE DEL ERROR: ' + err.message);
+    console.error(err);
+    
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+}
+
+
+    checkoutBtnEl.addEventListener('click', checkout);
+
+    renderCart();
+  </script>
+
+  <!-- JS ANIMATIONS & NAV -->
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".section, .card").forEach(el => observer.observe(el));
+
+    function showSection(id) {
+      document.querySelectorAll("main section").forEach(s => s.style.display = "none");
+      const target = document.getElementById(id);
+      if (target) target.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('checkout') === 'success') {
+      showSection('success');
+      cart = [];
+      saveCart();
+      renderCart();
+      if (window.history.replaceState) window.history.replaceState(null, '', window.location.pathname);
+    } else {
+      showSection('home');
+    }
+  </script>
+
+  <!-- JS STOCK -->
+  <script>
+    function getStoredStock(id, defaultStock) {
+      const saved = localStorage.getItem('stock-' + id);
+      return saved !== null ? parseInt(saved, 10) : defaultStock;
+    }
+
+    function saveStockValue(id, stock) {
+      localStorage.setItem('stock-' + id, stock);
+    }
+
+    function updateStockButton(card) {
+      const stock = parseInt(card.dataset.stock, 10);
+      const button = card.querySelector('.buy-btn');
+      button.classList.remove('low-stock', 'sold-out');
+      button.disabled = false;
+
+      if (stock <= 0) {
+        button.textContent = 'Edición terminada';
+        button.classList.add('sold-out');
+        button.disabled = true;
+      } else if (stock <= 15) {
+        button.textContent = 'Pocas piezas';
+        button.classList.add('low-stock');
+      } else {
+        button.textContent = 'Comprar';
+      }
+    }
+
+    document.querySelectorAll('.card[data-stock]').forEach(card => {
+      const id = card.dataset.id;
+      const initialStock = parseInt(card.dataset.stock, 10);
+      const storedStock = getStoredStock(id, initialStock);
+      card.dataset.stock = storedStock;
+      saveStockValue(id, storedStock);
+      updateStockButton(card);
+
+      card.querySelector('.buy-btn').addEventListener('click', () => {
+        let stock = parseInt(card.dataset.stock, 10);
+        if (stock > 0) {
+          stock--;
+          card.dataset.stock = stock;
+          saveStockValue(id, stock);
+          updateStockButton(card);
+        }
+      });
+    });
+  </script>
+
+  <!-- JS TRANSLATIONS -->
+  <script>
+    const translations = {
+      es: {
+        nav_home: 'Inicio', nav_women: 'Mujer', nav_men: 'Hombre', nav_brand: 'Marca', nav_mission: 'Manifiesto', nav_faq: 'FAQ',
+        hero_subtitle: 'Silent Authority',
+        hero_text: 'No seguimos temporadas.<br>Construimos presencia.',
+        hero_meta_label: 'Concepto',
+        hero_meta_text: 'Un sistema reducido de piezas esenciales en negro y hueso. Diseñado para construir presencia silenciosa, día tras día.',
+        home_block1_title: 'El lujo no se anuncia. Se reconoce.',
+        home_block1_text: 'Andrew Caravel nace de la convicción de que el verdadero poder no necesita ruido.',
+        home_block2_title: 'Diseño con intención',
+        home_block2_text: 'Diseñamos piezas esenciales para mujeres y hombres que entienden el valor de la presencia.',
+        home_closing_text: '"La elegancia no es exceso. Es control."',
+        women_title: 'Colección Mujer', men_title: 'Colección Hombre', about_title: 'Andrew Caravel', mission_title: 'Misión & Visión', faq_title: 'Preguntas frecuentes', success_title: 'Pago confirmado',
+        about_text: 'Andrew Caravel representa una nueva forma de autoridad: silenciosa, firme y consciente.<br><br>Diseñamos prendas que hablan sin levantar la voz.',
+        mission_label: 'Misión', mission_text: 'Crear piezas de lujo contemporáneo que transmitan poder silencioso.',
+        vision_label: 'Visión', vision_text: 'Convertir a Andrew Caravel en una referencia de autoridad estética global.',
+        faq_q1: '¿Las piezas son limitadas?', faq_a1: 'Sí, máximo 150 unidades por modelo.',
+        faq_q2: '¿Los accesorios están numerados?', faq_a2: 'No.',
+        success_message: 'Hemos recibido tu pago correctamente.<br><br>En los próximos minutos recibirás un correo de confirmación.',
+        success_note: 'Si no ves el correo, revisa tu carpeta de spam.',
+        success_back_btn: 'Volver a la tienda'
+      },
+      en: {
+        nav_home: 'Home', nav_women: 'Women', nav_men: 'Men', nav_brand: 'Brand', nav_mission: 'Mission & Vision', nav_faq: 'FAQ',
+        hero_subtitle: 'Silent authority',
+        hero_text: 'We do not follow seasons.<br>We build presence.',
+        hero_meta_label: 'Concept',
+        hero_meta_text: 'A reduced system of essential pieces in black and bone.',
+        home_block1_title: 'Luxury does not announce itself.',
+        home_block1_text: 'Andrew Caravel is born from the conviction that true power needs no noise.',
+        home_block2_title: 'Design with intent',
+        home_block2_text: 'We design essential pieces for women and men who understand the value of presence.',
+        home_closing_text: '"Elegance is not excess. It is control."',
+        women_title: 'Women Collection', men_title: 'Men Collection', about_title: 'Andrew Caravel', mission_title: 'Mission & Vision', faq_title: 'Frequently asked questions', success_title: 'Payment confirmed',
+        about_text: 'Andrew Caravel represents a new form of authority: silent, firm and deliberate.',
+        mission_label: 'Mission', mission_text: 'To create contemporary luxury pieces that transmit silent power.',
+        vision_label: 'Vision', vision_text: 'To establish Andrew Caravel as a global reference in aesthetic authority.',
+        faq_q1: 'Are the pieces limited?', faq_a1: 'Yes, a maximum of 150 units per model.',
+        faq_q2: 'Are accessories numbered?', faq_a2: 'No.',
+        success_message: 'We have received your payment successfully.',
+        success_note: 'If you do not see the email, please check your spam.',
+        success_back_btn: 'Back to store'
+      }
+    };
+
+    let currentLang = (localStorage.getItem('lang') === 'en') ? 'en' : 'es';
+
+    function applyTranslations(lang) {
+      const dict = translations[lang] || translations.es;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key]) el.innerHTML = dict[key];
+      });
+      const btn = document.getElementById('lang-toggle');
+      if (btn) btn.textContent = (lang === 'es') ? 'EN' : 'ES';
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+    }
+    applyTranslations(currentLang);
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        const newLang = (currentLang === 'es') ? 'en' : 'es';
+        applyTranslations(newLang);
+      });
+    }
+  </script>
+</body>
+ 
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 35d16e39069e87cd79eb85d4ae7aca5acb2fd8c9
