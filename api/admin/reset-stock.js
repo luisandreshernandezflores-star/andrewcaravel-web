@@ -5,22 +5,51 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'No autorizado' });
   }
 
-  try {
-    await kv.flushall(); // Borra todo lo viejo
-
-    // Llenamos el inventario
-    await kv.set('AC-W-TEE', 10);
-    await kv.set('AC-W-HOODIE', 5);
-    await kv.set('AC-W-TROUSER', 5);
-    await kv.set('AC-W-COAT', 2);
-    await kv.set('AC-W-DRESS', 3);
+  // 👇 AQUÍ DEFINES TU STOCK POR COLOR
+  // Nomenclatura: -BLK (Negro) | -HUE (Hueso)
+  const STOCK = {
+    // --- MUJER ---
+    'AC-W-TEE-BLK': 500,     // 5 Playeras Negras
+    'AC-W-TEE-HUE': 500,     // 5 Playeras Hueso
     
-    await kv.set('AC-M-TEE', 10);
-    await kv.set('AC-M-HOODIE', 5);
-    await kv.set('AC-M-TROUSER', 5);
-    await kv.set('AC-M-COAT', 2);
+    'AC-W-HOODIE-BLK': 500,
+    'AC-W-HOODIE-HUE': 500,  // Menos stock en hueso
+    
+    'AC-W-TROUSER-BLK': 500,
+    'AC-W-TROUSER-HUE': 500,
 
-    return res.status(200).json({ message: '✅ Inventario cargado en la Nube' });
+    'AC-W-COAT-BLK': 200,    // Muy exclusivo negro
+    'AC-W-COAT-HUE': 200,    // Muy exclusivo hueso
+
+    'AC-W-DRESS-BLK': 250,
+    'AC-W-DRESS-HUE': 250,
+
+    // --- HOMBRE ---
+    'AC-M-TEE-BLK': 500,
+    'AC-M-TEE-HUE': 500,
+
+    'AC-M-HOODIE-BLK': 500,
+    'AC-M-HOODIE-HUE': 500,
+
+    'AC-M-TROUSER-BLK': 500,
+    'AC-M-TROUSER-HUE': 500,
+
+    'AC-M-COAT-BLK': 200,
+    'AC-M-COAT-HUE': 200,
+  };
+
+  try {
+    await kv.flushall(); // Limpieza total
+    
+    // Carga masiva
+    for (const [sku, cantidad] of Object.entries(STOCK)) {
+      await kv.set(sku, cantidad);
+    }
+
+    return res.status(200).json({ 
+      message: '✅ Inventario por Colores Cargado', 
+      stock: STOCK 
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
