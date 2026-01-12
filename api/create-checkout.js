@@ -1,49 +1,19 @@
-import { kv } from '@vercel/kv'; // 👈 IMPORTANTE: Conexión a la base de datos
+import { kv } from '@vercel/kv';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 🛡️ LISTA MAESTRA (Solo para precios, fotos y límites por persona)
+// Lista maestra (Datos generales, NO stock)
 const INVENTORY = {
-  // MUJER
-  'AC-W-TEE': { 
-    price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' 
-  },
-  'AC-W-HOODIE': { 
-    price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' 
-  },
-  'AC-W-TROUSER': { 
-    price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  'AC-W-COAT': { 
-    price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  'AC-W-DRESS': { 
-    price: 6700, name: 'Sovereign Line Dress', maxPerOrder: 3, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  
-  // HOMBRE
-  'AC-M-TEE': { 
-    price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  'AC-M-HOODIE': { 
-    price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  'AC-M-TROUSER': { 
-    price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
-  'AC-M-COAT': { 
-    price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, 
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
-  },
+  'AC-W-TEE': { price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-W-HOODIE': { price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-W-TROUSER': { price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-W-COAT': { price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-W-DRESS': { price: 6700, name: 'Sovereign Line Dress', maxPerOrder: 3, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-M-TEE': { price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-M-HOODIE': { price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-M-TROUSER': { price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
+  'AC-M-COAT': { price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' },
 };
 
 export default async function handler(req, res) {
@@ -53,41 +23,51 @@ export default async function handler(req, res) {
 
   try {
     const { cart } = req.body;
+    console.log("🛒 Checkout iniciado con variantes");
 
-    // ---------------------------------------------------------
-    // PASO 1: VERIFICACIÓN DE STOCK EN LA NUBE (KV) ☁️
-    // ---------------------------------------------------------
+    // PASO 1: VERIFICAR STOCK POR COLOR
     for (const item of cart) {
-      const productInfo = INVENTORY[item.baseId];
+      const productBase = INVENTORY[item.baseId];
+      if (!productBase) throw new Error(`Producto inválido: ${item.name}`);
 
-      // 1. Validar que el producto exista en tu lista
-      if (!productInfo) throw new Error(`Producto inválido: ${item.name}`);
+      // 🧠 Lógica inteligente de variantes
+      let suffix = '';
+      const variantName = (item.variant || '').toLowerCase(); // Convertimos a minúsculas
       
-      // 2. Validar límites por persona
-      if (item.quantity > productInfo.maxPerOrder) {
-         throw new Error(`Máximo ${productInfo.maxPerOrder} unidades de ${productInfo.name}`);
+      if (variantName.includes('negro') || variantName.includes('black')) {
+        suffix = '-BLK';
+      } else if (variantName.includes('hueso') || variantName.includes('bone') || variantName.includes('white')) {
+        suffix = '-HUE';
+      } else {
+        // Si no detectamos color, asumimos Negro por defecto o lanzamos error
+        suffix = '-BLK'; 
       }
 
-      // 3. CONSULTAR STOCK REAL EN VERCEL KV 🔍
-      const stockReal = await kv.get(item.baseId); // Leemos la base de datos
+      // SKU FINAL (Ej: AC-W-TEE-BLK)
+      const skuExacto = `${item.baseId}${suffix}`;
       
-      // Si devuelve null (no existe) o 0, es que no hay.
-      if (stockReal === null || stockReal < item.quantity) {
-        throw new Error(`Lo sentimos, ${productInfo.name} se acaba de agotar (Quedan: ${stockReal || 0})`);
+      console.log(`🔍 Revisando: ${skuExacto}, Pide: ${item.quantity}`);
+
+      const stockActual = await kv.get(skuExacto);
+
+      if (stockActual === null || stockActual < item.quantity) {
+        throw new Error(`Lo sentimos, ${item.name} (${item.variant}) está Agotado. (Quedan: ${stockActual || 0})`);
       }
     }
 
-    // ---------------------------------------------------------
-    // PASO 2: RESTA INMEDIATA (CANDADO DE SEGURIDAD) 🔒
-    // ---------------------------------------------------------
-    // Si llegamos aquí, hay stock para todos. Ahora lo restamos.
+    // PASO 2: RESTAR STOCK EXACTO
     for (const item of cart) {
-      await kv.decr(item.baseId, item.quantity); 
+      // Repetimos la lógica para obtener el SKU exacto
+      let suffix = '';
+      const variantName = (item.variant || '').toLowerCase();
+      if (variantName.includes('negro') || variantName.includes('black')) suffix = '-BLK';
+      else suffix = '-HUE'; // Asumimos hueso si no es negro
+
+      const skuExacto = `${item.baseId}${suffix}`;
+      await kv.decr(skuExacto, item.quantity);
     }
 
-    // ---------------------------------------------------------
-    // PASO 3: CREAR SESIÓN DE PAGO EN STRIPE 💳
-    // ---------------------------------------------------------
+    // PASO 3: STRIPE
     const line_items = cart.map((item) => {
       const originalProduct = INVENTORY[item.baseId];
       return {
@@ -95,7 +75,7 @@ export default async function handler(req, res) {
           currency: 'mxn',
           product_data: {
             name: originalProduct.name,
-            description: `(x${item.quantity}) - ${item.variant || 'Standard'}`,
+            description: `Color: ${item.variant} | Cantidad: ${item.quantity}`,
             images: [originalProduct.image],
           },
           unit_amount: originalProduct.price * 100,
@@ -110,15 +90,14 @@ export default async function handler(req, res) {
       mode: 'payment',
       phone_number_collection: { enabled: true },
       shipping_address_collection: { allowed_countries: ['MX'] },
-      success_url: `${req.headers.origin}/success.html`, // Asegúrate que success.html exista
+      success_url: `${req.headers.origin}/success.html`,
       cancel_url: `${req.headers.origin}/`,
     });
 
     res.status(200).json({ url: session.url });
 
   } catch (err) {
-    console.error("Error en checkout:", err.message);
-    // Si falló por stock, devolvemos el error al usuario para que le salga la alerta
+    console.error("Error Checkout:", err.message);
     res.status(400).json({ error: err.message });
   }
 }
