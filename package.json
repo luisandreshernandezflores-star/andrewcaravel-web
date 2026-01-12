@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-    "name": "mi-tienda-lujo",
+    "name": "andrew-caravel-web",
     "version": "1.0.0",
     "type": "module",
     "engines": {
@@ -11,15 +10,3 @@
       "@vercel/kv": "^1.0.1"
     }
   }
-=======
-  "name": "mi-tienda-lujo",
-  "version": "1.0.0",
-  "type": "module",
-  "engines": {
-    "node": "24.x"
-  },
-  "dependencies": {
-    "stripe": "^14.0.0"
-  }
-}
->>>>>>> 35d16e39069e87cd79eb85d4ae7aca5acb2fd8c9
