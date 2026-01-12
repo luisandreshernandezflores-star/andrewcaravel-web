@@ -1,6 +1,6 @@
 {
-    "name": "andrew-caravel-web",
-    "version": "1.0.0",
+    "name": "andrew-store-web",
+    "version": "1.0.5",
     "type": "module",
     "engines": {
       "node": "24.x"
