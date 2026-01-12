@@ -1,73 +1,47 @@
+import { kv } from '@vercel/kv'; // 👈 IMPORTANTE: Conexión a la base de datos
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 🛡️ LISTA MAESTRA DE INVENTARIO (PRECIOS + STOCK + FOTOS)
+// 🛡️ LISTA MAESTRA (Solo para precios, fotos y límites por persona)
 const INVENTORY = {
   // MUJER
   'AC-W-TEE': { 
-    price: 2200, 
-    name: 'Essential Silent Tee',
-    maxPerOrder: 5,  // ⬅️ Límite de compra
-    active: true,    // ⬅️ camiar a false, nadie puede comprarla
-    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' //link de la foto real
+    price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, 
+    image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' 
   },
   'AC-W-HOODIE': { 
-    price: 4500, 
-    name: 'Structured Hoodie',
-    maxPerOrder: 3,
-    active: true,
+    price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg' 
   },
   'AC-W-TROUSER': { 
-    price: 4500, 
-    name: 'Structured Trouser',
-    maxPerOrder: 3,
-    active: true,
+    price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   'AC-W-COAT': { 
-    price: 7800, 
-    name: 'Structured Coat',
-    maxPerOrder: 2,
-    active: true,
+    price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   'AC-W-DRESS': { 
-    price: 6700, 
-    name: 'Sovereign Line Dress',
-    maxPerOrder: 3,
-    active: true,
+    price: 6700, name: 'Sovereign Line Dress', maxPerOrder: 3, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   
   // HOMBRE
   'AC-M-TEE': { 
-    price: 2200, 
-    name: 'Essential Silent Tee',
-    maxPerOrder: 5,
-    active: true,
+    price: 2200, name: 'Essential Silent Tee', maxPerOrder: 5, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   'AC-M-HOODIE': { 
-    price: 4500, 
-    name: 'Structured Hoodie',
-    maxPerOrder: 3,
-    active: true,
+    price: 4500, name: 'Structured Hoodie', maxPerOrder: 3, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   'AC-M-TROUSER': { 
-    price: 4500, 
-    name: 'Structured Trouser',
-    maxPerOrder: 3,
-    active: true,
+    price: 4500, name: 'Structured Trouser', maxPerOrder: 3, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
   'AC-M-COAT': { 
-    price: 7800, 
-    name: 'Structured Coat',
-    maxPerOrder: 2,
-    active: true,
+    price: 7800, name: 'Structured Coat', maxPerOrder: 2, active: true, 
     image: 'https://andrewcaravel-web.vercel.app/img/ACN.jpeg'
   },
 };
@@ -80,34 +54,51 @@ export default async function handler(req, res) {
   try {
     const { cart } = req.body;
 
-    // Validamos y construimos los items
-    const line_items = cart.map((item) => {
-      // 1. Buscamos el producto en la LISTA MAESTRA
-      const originalProduct = INVENTORY[item.baseId];
+    // ---------------------------------------------------------
+    // PASO 1: VERIFICACIÓN DE STOCK EN LA NUBE (KV) ☁️
+    // ---------------------------------------------------------
+    for (const item of cart) {
+      const productInfo = INVENTORY[item.baseId];
 
-      // AQUI VALIDAMOS EXISTENCIA Y SEGURIDAD
-      if (!originalProduct) {
-        throw new Error(`Producto no válido: ${item.name}`);
-      }
+      // 1. Validar que el producto exista en tu lista
+      if (!productInfo) throw new Error(`Producto inválido: ${item.name}`);
       
-      // 2. NUEVAS VALIDACIONES DE STOCK ⬅️
-      if (!originalProduct.active) {
-         throw new Error(`Lo sentimos, ${originalProduct.name} está Agotado temporalmente.`);
-      }
-      if (item.quantity > originalProduct.maxPerOrder) {
-         throw new Error(`Solo puedes comprar máximo ${originalProduct.maxPerOrder} piezas de ${originalProduct.name}.`);
+      // 2. Validar límites por persona
+      if (item.quantity > productInfo.maxPerOrder) {
+         throw new Error(`Máximo ${productInfo.maxPerOrder} unidades de ${productInfo.name}`);
       }
 
-      // 3. ARMAMOS EL PRODUCTO PARA STRIPE
+      // 3. CONSULTAR STOCK REAL EN VERCEL KV 🔍
+      const stockReal = await kv.get(item.baseId); // Leemos la base de datos
+      
+      // Si devuelve null (no existe) o 0, es que no hay.
+      if (stockReal === null || stockReal < item.quantity) {
+        throw new Error(`Lo sentimos, ${productInfo.name} se acaba de agotar (Quedan: ${stockReal || 0})`);
+      }
+    }
+
+    // ---------------------------------------------------------
+    // PASO 2: RESTA INMEDIATA (CANDADO DE SEGURIDAD) 🔒
+    // ---------------------------------------------------------
+    // Si llegamos aquí, hay stock para todos. Ahora lo restamos.
+    for (const item of cart) {
+      await kv.decr(item.baseId, item.quantity); 
+    }
+
+    // ---------------------------------------------------------
+    // PASO 3: CREAR SESIÓN DE PAGO EN STRIPE 💳
+    // ---------------------------------------------------------
+    const line_items = cart.map((item) => {
+      const originalProduct = INVENTORY[item.baseId];
       return {
         price_data: {
           currency: 'mxn',
           product_data: {
-            name: originalProduct.name, // NOMBRE OFICIAL
-            description: `(x${item.quantity}) - ${item.variant}`, // DESCRIPCIÓN CON CANTIDAD
-            images: [originalProduct.image], // ⬅️ FOTO EN EL CHECKOUT
+            name: originalProduct.name,
+            description: `(x${item.quantity}) - ${item.variant || 'Standard'}`,
+            images: [originalProduct.image],
           },
-          unit_amount: originalProduct.price * 100, // PRECIO SEGURO
+          unit_amount: originalProduct.price * 100,
         },
         quantity: item.quantity,
       };
@@ -119,14 +110,15 @@ export default async function handler(req, res) {
       mode: 'payment',
       phone_number_collection: { enabled: true },
       shipping_address_collection: { allowed_countries: ['MX'] },
-      success_url: `${req.headers.origin}/?checkout=success`,
+      success_url: `${req.headers.origin}/success.html`, // Asegúrate que success.html exista
       cancel_url: `${req.headers.origin}/`,
     });
 
     res.status(200).json({ url: session.url });
 
   } catch (err) {
-    console.error("Intento de compra fallido:", err.message);
+    console.error("Error en checkout:", err.message);
+    // Si falló por stock, devolvemos el error al usuario para que le salga la alerta
     res.status(400).json({ error: err.message });
   }
 }
