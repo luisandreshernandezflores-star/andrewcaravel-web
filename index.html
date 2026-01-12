@@ -384,6 +384,17 @@
       .cart { width: 100%; right: -100%; }
       .cart-toggle { bottom: 20px; right: 20px; padding: 10px 18px; }
     }
+    .mto-badge {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-top: -10px; /* Para pegarlo al precio */
+    margin-bottom: 15px;
+    display: block;
+    font-weight: 500;
+}
+
     /* =========================================
        DISEÑO MÓVIL 
        ========================================= */
@@ -594,6 +605,7 @@
           </div>
           
           <p class="price">$2,200 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Essential Silent Tee - Mujer" data-price="2200" data-base-id="AC-W-TEE" data-stripe="price_1Sm6bIJiBpJ6fevzE7GfC2iZ">Comprar</button>
         </div>
 
@@ -623,6 +635,7 @@
           </div>
 
           <p class="price">$4,500 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Hoodie - Mujer" data-price="4500" data-base-id="AC-W-HOODIE" data-stripe="price_1Sm6pCJiBpJ6fevziYVujGpJ">Comprar</button>
         </div>
 
@@ -652,6 +665,7 @@
           </div>
 
           <p class="price">$4,500 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Trouser - Mujer" data-price="4500" data-base-id="AC-W-TROUSER" data-stripe="price_1Sm6wwJiBpJ6fevz3VpXuoC4">Comprar</button>
         </div>
 
@@ -681,6 +695,7 @@
           </div>
 
           <p class="price">$7,800 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Coat - Mujer" data-price="7800" data-base-id="AC-W-COAT" data-stripe="price_1Sm6zyJiBpJ6fevz6Zu8qxRN">Comprar</button>
         </div>
 
@@ -710,6 +725,7 @@
           </div>
 
           <p class="price">$6,700 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Sovereign Line Dress" data-price="6700" data-base-id="AC-W-DRESS" data-stripe="price_1Sm72HJiBpJ6fevzpCWWob0j">Comprar</button>
         </div>
       </div>
@@ -747,6 +763,7 @@
           </div>
 
           <p class="price">$2,200 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Essential Silent Tee - Hombre" data-price="2200" data-base-id="AC-M-TEE" data-stripe="price_1Sm6bIJiBpJ6fevzE7GfC2iZ">Comprar</button>
         </div>
 
@@ -776,6 +793,7 @@
           </div>
 
           <p class="price">$4,500 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Hoodie - Hombre" data-price="4500" data-base-id="AC-M-HOODIE" data-stripe="price_1Sm6pCJiBpJ6fevziYVujGpJ">Comprar</button>
         </div>
 
@@ -805,6 +823,7 @@
           </div>
 
           <p class="price">$4,500 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Trouser - Hombre" data-price="4500" data-base-id="AC-M-TROUSER" data-stripe="price_1Sm6wwJiBpJ6fevz3VpXuoC4">Comprar</button>
         </div>
 
@@ -834,6 +853,7 @@
           </div>
 
           <p class="price">$7,800 MXN</p>
+          <span class="mto-badge">Made-to-order • Entrega en 4 semanas</span>
           <button class="buy-btn" onclick="addToCartWithVariants(this)" data-name="Structured Coat - Hombre" data-price="7800" data-base-id="AC-M-COAT" data-stripe="price_1Sm6zyJiBpJ6fevz6Zu8qxRN">Comprar</button>
         </div>
       </div>
@@ -923,9 +943,9 @@
           <p>Silent Luxury.<br>Mexico City.</p>
       </div>
       <div class="footer-col">
-          <h4>Cliente</h4>
-          <a href="#" onclick="showSection('faq')">Preguntas Frecuentes</a>
-          <a href="#">Envíos y Devoluciones</a>
+        <h4>Cliente</h4>
+        <a href="#" onclick="showSection('faq')">Preguntas Frecuentes</a>
+        <a href="envios.html">Envíos y Devoluciones</a>
       </div>
       <div class="footer-col">
           <h4>Legal</h4>
