@@ -64,7 +64,7 @@ export default async function handler(req, res) {
       else suffix = '-HUE'; // Asumimos hueso si no es negro
 
       const skuExacto = `${item.baseId}${suffix}`;
-      await kv.decr(skuExacto, item.quantity);
+      await kv.decrby(skuExacto, item.quantity);
     }
 
     // PASO 3: STRIPE
